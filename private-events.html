@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Events | Beer Park Las Vegas</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* CSS VARIABLES & RESET */
+:root {
+  --primary-red: #bf2633;
+  --primary-red-dark: #a01e2a;
+  --dark-bg: #414042;
+  --accent-yellow: #beb38f;
+  --light-bg: #ffffff;
+  --text-light: #ffffff;
+  --text-dark: #414042;
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--dark-bg);
+  color: var(--text-light);
+  overflow-x: hidden;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* LAYOUT & STRUCTURE */
+.site-wrapper {
+  display: flex;
+  position: relative;
+}
+
+/* SIDEBAR NAVIGATION (DESKTOP) */
+.sidebar {
+  background: var(--primary-red);
+  background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 2px, transparent 2px, transparent 10px);
+  border-right: 2px solid #000;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.sidebar-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.sidebar-logo {
+  padding: 2.5rem 1.5rem 1.5rem;
+}
+
+.sidebar-logo img {
+  height: 160px;
+}
+
+.sidebar-info {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.sidebar-nav {
+  width: 100%;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+.sidebar-nav li {
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.sidebar-nav a:not(.btn):hover {
+  color: var(--accent-yellow);
+}
+
+.sidebar-nav .btn {
+  background: var(--dark-bg);
+  padding: 1rem 1.25rem;
+  border: 2px solid #000;
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.sidebar-nav .btn:hover {
+  background: var(--accent-yellow);
+  color: var(--text-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.close-menu-btn {
+  display: none;
+}
+
+/* MOBILE HEADER */
+.mobile-header {
+  display: none;
+  background: #1a1a1a;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  border-bottom: 2px solid #000;
+}
+
+.mobile-logo img {
+  height: 40px;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger-btn .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-light);
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+body.sidebar-open .hamburger-btn .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+body.sidebar-open .hamburger-btn .bar:nth-child(2) {
+  opacity: 0;
+}
+
+body.sidebar-open .hamburger-btn .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* MAIN CONTENT AREA */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--dark-bg);
+  position: relative;
+  max-width: 100vw;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 85vh;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 120%;
+  min-height: 120%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  filter: brightness(0.6) saturate(1.1);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-light);
+  max-width: 1000px;
+}
+
+.hero-eyebrow {
+  color: var(--accent-yellow);
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 8rem);
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  text-shadow: 
+    3px 3px 0px rgba(0,0,0,0.9),
+    0 5px 40px rgba(0,0,0,1);
+  -webkit-text-stroke: 1px rgba(0,0,0,0.3);
+}
+
+.hero-title .highlight-text {
+  color: var(--primary-red);
+  text-shadow: 
+    3px 3px 0px rgba(0,0,0,0.9),
+    0 0 50px rgba(191, 38, 51, 0.9),
+    0 5px 40px rgba(0,0,0,1);
+  -webkit-text-stroke: 1px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  line-height: 1.7;
+  text-shadow: 0 2px 15px rgba(0,0,0,0.9);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-cta {
+  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+  color: var(--text-light);
+  border: none;
+  padding: 1.3rem 3rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.hero-cta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 35px rgba(191, 38, 51, 0.6);
+}
+
+.hero-cta.secondary {
+  background: transparent;
+  border: 3px solid var(--text-light);
+}
+
+.hero-cta.secondary:hover {
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 10px 35px rgba(255,255,255,0.3);
+}
+
+/* TICKER */
+.ticker {
+  border-top: 4px solid var(--primary-red);
+  border-bottom: 4px solid var(--primary-red);
+  overflow: hidden;
+  white-space: nowrap;
+  background: linear-gradient(90deg, #000 0%, #111 50%, #000 100%);
+  padding: 1rem 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.ticker-track {
+  display: inline-block;
+  animation: scroll 35s linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker span {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.ticker .dot {
+  color: var(--accent-yellow);
+  margin: 0 1rem;
+  font-size: 1.5rem;
+}
+
+/* HIGHLIGHTS GRID */
+.highlights-section {
+  padding: 8rem 2rem;
+  background: var(--dark-bg);
+  position: relative;
+}
+
+.highlights-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://www.toptal.com/designers/subtlepatterns/uploads/dark-wood.png');
+  opacity: 0.3;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-eyebrow {
+  color: var(--accent-yellow);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  text-transform: uppercase;
+  color: var(--text-light);
+  line-height: 0.95;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.8);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.highlight-card {
+  background: rgba(0,0,0,0.4);
+  border: 2px solid rgba(255,255,255,0.1);
+  padding: 3rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary-red);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.highlight-card:hover {
+  background: rgba(191, 38, 51, 0.15);
+  border-color: var(--primary-red);
+  transform: translateY(-8px);
+}
+
+.highlight-card:hover::before {
+  transform: scaleX(1);
+}
+
+.highlight-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: var(--accent-yellow);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.highlight-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+}
+
+/* CONTACT SPLIT */
+.contact-split {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 700px;
+}
+
+.contact-image {
+  flex: 1;
+  min-width: 50%;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.squarespace-cdn.com/content/60b445f2dcfc4f2bd6e8f45e/0076fc49-d2ae-4b81-9ad0-529d859e1461/Beer_Park_Lifestyle_21+%281%29.jpg?content-type=image%2Fjpeg') center/cover no-repeat;
+}
+
+.contact-content {
+  flex: 1;
+  min-width: 50%;
+  background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.03) 10px, rgba(0,0,0,0.03) 20px), linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+  padding: 6rem 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--text-dark);
+}
+
+.contact-eyebrow {
+  color: var(--primary-red);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.contact-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5rem);
+  text-transform: uppercase;
+  color: var(--primary-red);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+}
+
+.contact-text {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.contact-details {
+  background: rgba(191,38,51,0.08);
+  border-left: 4px solid var(--primary-red);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-item {
+  margin-bottom: 1.5rem;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 900;
+  color: var(--primary-red);
+  margin-bottom: 0.5rem;
+}
+
+.contact-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.contact-value a {
+  color: var(--primary-red);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.contact-value a:hover {
+  opacity: 0.7;
+}
+
+/* CAPABILITIES SECTION */
+.capabilities-section {
+  background: linear-gradient(135deg, var(--primary-red-dark) 0%, var(--primary-red) 50%, var(--primary-red-dark) 100%);
+  padding: 8rem 2rem;
+  position: relative;
+}
+
+.capabilities-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 20px);
+}
+
+.capabilities-section .section-title,
+.capabilities-section .section-subtitle {
+  color: var(--text-light);
+}
+
+.capabilities-section .section-subtitle {
+  opacity: 0.95;
+}
+
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.capability-item {
+  background: rgba(0,0,0,0.25);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-left: 4px solid var(--accent-yellow);
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.capability-item:hover {
+  background: rgba(0,0,0,0.4);
+  transform: translateX(10px);
+  border-left-color: var(--primary-red);
+}
+
+.capability-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+}
+
+/* SPACES GALLERY */
+.spaces-section {
+  background: var(--dark-bg);
+  padding: 8rem 2rem;
+  position: relative;
+}
+
+.spaces-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://www.toptal.com/designers/subtlepatterns/uploads/dark-wood.png');
+  opacity: 0.2;
+}
+
+.spaces-section .section-title {
+  color: var(--text-light);
+}
+
+.spaces-section .section-subtitle {
+  color: rgba(255,255,255,0.8);
+}
+
+.spaces-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.space-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: #000;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.space-card:hover {
+  transform: scale(1.03);
+}
+
+.space-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.space-card:hover img {
+  transform: scale(1.1);
+  filter: brightness(0.7);
+}
+
+.space-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 70%, transparent 100%);
+  padding: 2rem 1.5rem 1.5rem;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.space-card:hover .space-label {
+  transform: translateY(-5px);
+}
+
+/* FOOTER */
+.site-footer {
+  background: #000;
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 2px solid #222;
+}
+
+.socials {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.socials svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-light);
+  opacity: 0.7;
+  transition: all 0.3s;
+}
+
+.socials a:hover svg {
+  opacity: 1;
+  transform: scale(1.2);
+  fill: var(--primary-red);
+}
+
+.site-footer p {
+  font-size: 0.9rem;
+  color: #888;
+  letter-spacing: 0.05em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1023px) {
+  .sidebar {
+    position: fixed;
+    height: 100vh;
+    transform: translateX(-100%);
+  }
+
+  body.sidebar-open .sidebar {
+    transform: translateX(0);
+    box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+  }
+
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .main-content {
+    padding-top: 66px;
+  }
+
+  .close-menu-btn {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .close-menu-btn svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--text-light);
+  }
+}
+
+@media (max-width: 900px) {
+  .highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spaces-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-split {
+    flex-direction: column;
+  }
+
+  .contact-image {
+    min-height: 400px;
+  }
+
+  .contact-content {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 550px;
+    height: 75vh;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-cta {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .highlights-section,
+  .capabilities-section {
+    padding: 5rem 1.5rem;
+  }
+
+  .capability-item {
+    padding: 1.5rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="site-wrapper">
+  <header class="mobile-header">
+    <a href="index.html" class="mobile-logo" aria-label="Home">
+      <img loading="lazy" src="https://uploadthingy.s3.us-west-1.amazonaws.com/jZN7L7rXGfQnmcVSEmMgsD/Beer_Park_Logo.png" alt="Beer Park Logo">
+    </a>
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Open Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+      <button class="close-menu-btn" id="close-menu-btn" aria-label="Close Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+      <div class="sidebar-logo">
+        <a href="index.html" aria-label="Home">
+          <img loading="lazy" src="https://uploadthingy.s3.us-west-1.amazonaws.com/jZN7L7rXGfQnmcVSEmMgsD/Beer_Park_Logo.png" alt="Beer Park Logo">
+        </a>
+      </div>
+      <div class="sidebar-info">
+        <p>3655 S Las Vegas Blvd<br>Las Vegas, NV 89109<br>(702) 331-5100</p>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="reservations.html" class="btn">RESERVATIONS</a></li>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="index.html#sports-schedule">EVENTS</a></li>
+          <li><a href="menu.html">MENUS</a></li>
+          <li><a href="private-events.html">PRIVATE EVENTS</a></li>
+          <li><a href="visit.html">VISIT</a></li>
+          <li><a href="#">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <!-- HERO -->
+    <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="https://static1.squarespace.com/static/60b445f2dcfc4f2bd6e8f45e/t/68e7ba3886857830e6097c22/1760016957241/BEERPARK+%282%29.mp4" type="video/mp4">
+      </video>
+      <div class="hero-content">
+        <div class="hero-eyebrow">PRIVATE EVENTS</div>
+        <h1 class="hero-title">ELEVATE YOUR EVENT</h1>
+        <p class="hero-subtitle">Vegas' most spectacular rooftop venue. Under the Eiffel Tower, overlooking the Bellagio Fountains. From intimate dinners to grand receptions, create unforgettable moments on the Strip.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="hero-cta">GET STARTED</a>
+          <a href="tel:7029791246" class="hero-cta secondary">CALL NOW</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>17,000 SQ FT VENUE</span><span class="dot">•</span>
+        <span>UP TO 1,200 GUESTS</span><span class="dot">•</span>
+        <span>EIFFEL TOWER VIEWS</span><span class="dot">•</span>
+        <span>BELLAGIO FOUNTAINS</span><span class="dot">•</span>
+        <span>BUILT-IN AV & BACKLINE</span><span class="dot">•</span>
+        <span>17,000 SQ FT VENUE</span><span class="dot">•</span>
+        <span>UP TO 1,200 GUESTS</span><span class="dot">•</span>
+        <span>EIFFEL TOWER VIEWS</span><span class="dot">•</span>
+        <span>BELLAGIO FOUNTAINS</span><span class="dot">•</span>
+        <span>BUILT-IN AV & BACKLINE</span><span class="dot">•</span>
+      </div>
+    </div>
+
+    <!-- HIGHLIGHTS -->
+    <section class="highlights-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">VENUE HIGHLIGHTS</div>
+          <h2 class="section-title">WHY BEER PARK</h2>
+          <p class="section-subtitle">An unmatched combination of location, views, and capabilities that make every event extraordinary.</p>
+        </div>
+
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <h3 class="highlight-title">17,000 SQ FT</h3>
+            <p class="highlight-text">Expansive indoor and outdoor spaces to accommodate events of any size and style.</p>
+          </div>
+
+          <div class="highlight-card">
+            <h3 class="highlight-title">1,200 GUESTS</h3>
+            <p class="highlight-text">Reception capacity for up to 1,200 guests or 265 for intimate seated dinners.</p>
+          </div>
+
+          <div class="highlight-card">
+            <h3 class="highlight-title">EIFFEL TOWER</h3>
+            <p class="highlight-text">Positioned directly under the iconic Paris Las Vegas Eiffel Tower replica.</p>
+          </div>
+
+          <div class="highlight-card">
+            <h3 class="highlight-title">FOUNTAIN VIEWS</h3>
+            <p class="highlight-text">Overlooks the world-famous Bellagio Fountains for spectacular backdrops.</p>
+          </div>
+
+          <div class="highlight-card">
+            <h3 class="highlight-title">BUILT-IN AV</h3>
+            <p class="highlight-text">Professional audio-visual equipment and backline included with venue.</p>
+          </div>
+
+          <div class="highlight-card">
+            <h3 class="highlight-title">4,000 CAPACITY</h3>
+            <p class="highlight-text">Adjacent venues available to accommodate up to 4,000 total guests.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section class="capabilities-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">PERFECT FOR</div>
+          <h2 class="section-title">EVENT TYPES</h2>
+          <p class="section-subtitle">From corporate gatherings to milestone celebrations, we bring your vision to life.</p>
+        </div>
+
+        <div class="capabilities-grid">
+          <div class="capability-item">
+            <div class="capability-text">Corporate Events</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-text">Private Parties</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-text">Weddings & Receptions</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-text">Watch Parties</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-text">Graduation Parties</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-text">Product Launches</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-text">Holiday Celebrations</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-text">Team Building</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPACES GALLERY -->
+    <section class="spaces-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">OUR VENUE</div>
+          <h2 class="section-title">EXPLORE THE SPACES</h2>
+          <p class="section-subtitle">From intimate indoor settings to expansive rooftop patios, discover the versatile spaces that make Beer Park the perfect venue.</p>
+        </div>
+
+        <div class="spaces-grid">
+          <div class="space-card">
+            <img src="https://images.squarespace-cdn.com/content/v1/60b445f2dcfc4f2bd6e8f45e/1622498906723-NQHJFTCN4X5LD73F3HLN/image-asset.jpeg" alt="Outdoor Patio Overlooking Bellagio">
+            <div class="space-label">Outdoor Patio Overlooking Bellagio</div>
+          </div>
+
+          <div class="space-card">
+            <img src="https://images.squarespace-cdn.com/content/v1/60b445f2dcfc4f2bd6e8f45e/1622498915068-0Z8RHZQJ1JL9GQWWKQQL/image-asset.jpeg" alt="Outdoor Bar Area">
+            <div class="space-label">Outdoor Bar Area</div>
+          </div>
+
+          <div class="space-card">
+            <img src="https://images.squarespace-cdn.com/content/v1/60b445f2dcfc4f2bd6e8f45e/1622498921967-5CYG0QVLVFQ87H1AH09I/image-asset.jpeg" alt="Outdoor Patio Overlooking Bellagio Fountains">
+            <div class="space-label">Outdoor Patio Overlooking Bellagio Fountains</div>
+          </div>
+
+          <div class="space-card">
+            <img src="https://images.squarespace-cdn.com/content/v1/60b445f2dcfc4f2bd6e8f45e/1622498928725-QSTOJNK8JL4Z0Y2L7Z4Y/image-asset.jpeg" alt="Indoor Living Room Area">
+            <div class="space-label">Indoor Living Room Area</div>
+          </div>
+
+          <div class="space-card">
+            <img src="https://images.squarespace-cdn.com/content/v1/60b445f2dcfc4f2bd6e8f45e/1622498934986-7ASJQHKZY0XRPBBH70LH/image-asset.jpeg" alt="Indoor Bar">
+            <div class="space-label">Indoor Bar</div>
+          </div>
+
+          <div class="space-card">
+            <img src="https://images.squarespace-cdn.com/content/v1/60b445f2dcfc4f2bd6e8f45e/1622498941203-P78OGM8FMXSHF14HVQWS/image-asset.jpeg" alt="Living Room Adjacent to Outside Patio">
+            <div class="space-label">Living Room Adjacent to Outside Patio</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SPLIT -->
+    <section id="contact" class="contact-split">
+      <div class="contact-image"></div>
+      <div class="contact-content">
+        <div class="contact-eyebrow">LET'S CONNECT</div>
+        <h2 class="contact-title">BOOK YOUR EVENT</h2>
+        <p class="contact-text">Ready to host an unforgettable event at Vegas' premier rooftop venue? Our experienced events team is here to make your vision a reality.</p>
+
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">
+              <a href="mailto:events@jrshospitality.com">events@jrshospitality.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">
+              <a href="tel:7029791246">(702) 979-1246</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-label">Location</div>
+            <div class="contact-value">
+              3655 S Las Vegas Blvd<br>
+              Paris Las Vegas - Rooftop<br>
+              Las Vegas, NV 89109
+            </div>
+          </div>
+        </div>
+
+        <a href="mailto:events@jrshospitality.com" class="hero-cta">SEND INQUIRY</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="socials">
+        <a href="#" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.55v.05c0 2.08 1.48 3.82 3.44 4.21-.36.1-.74.15-1.14.15-.28 0-.55-.03-.81-.08.55 1.7 2.14 2.94 4.03 2.97-1.47 1.15-3.32 1.83-5.33 1.83-.35 0-.69-.02-1.03-.06 1.9 1.23 4.15 1.95 6.56 1.95 7.88 0 12.2-6.54 12.2-12.2 0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+          </svg>
+        </a>
+      </div>
+      <p>© 2025 Beer Park Las Vegas. All Rights Reserved.</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Mobile menu
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const closeMenuBtn = document.getElementById('close-menu-btn');
+  const sidebar = document.getElementById('sidebar');
+  
+  if (hamburgerBtn && closeMenuBtn) {
+    hamburgerBtn.addEventListener('click', () => {
+      document.body.classList.add('sidebar-open');
+    });
+    
+    closeMenuBtn.addEventListener('click', () => {
+      document.body.classList.remove('sidebar-open');
+    });
+    
+    const sidebarLinks = sidebar.querySelectorAll('a');
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('sidebar-open');
+      });
+    });
+  }
+});
+</script>
+
+</body>
+</html>
