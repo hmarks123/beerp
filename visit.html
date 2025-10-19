@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visit Us | Beer Park Las Vegas</title>
+<title>Visit | Beer Park Las Vegas</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 /* CSS VARIABLES & RESET */
@@ -17,10 +17,11 @@
   --dark-bg: #414042;
   --accent-yellow: #beb38f;
   --light-bg: #ffffff;
+  --screen-bg: #1a1a1a;
   --text-light: #ffffff;
   --text-dark: #414042;
-  --font-display: 'Anton', sans-serif;
-  --font-body: 'Roboto', sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 * {
@@ -38,8 +39,15 @@ body {
   background: var(--dark-bg);
   color: var(--text-light);
   overflow-x: hidden;
-  font-size: 17px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--primary-red);
+  color: var(--text-light);
 }
 
 a {
@@ -76,6 +84,15 @@ img {
   z-index: 1000;
   transition: transform 0.3s ease-in-out;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.03) 10px, rgba(0, 0, 0, 0.03) 20px);
+  pointer-events: none;
 }
 
 .sidebar-content {
@@ -90,6 +107,11 @@ img {
 
 .sidebar-logo {
   padding: 2.5rem 1.5rem 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo:hover {
+  transform: scale(1.05);
 }
 
 .sidebar-logo img {
@@ -98,10 +120,12 @@ img {
 
 .sidebar-info {
   text-align: center;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  padding: 0 1rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  padding: 0 1.5rem;
+  color: var(--text-light);
+  font-weight: 500;
 }
 
 .sidebar-nav {
@@ -111,11 +135,11 @@ img {
 .sidebar-nav ul {
   list-style: none;
   width: 100%;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
 }
 
 .sidebar-nav li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .sidebar-nav a {
@@ -128,6 +152,7 @@ img {
   letter-spacing: 0.08em;
   text-align: center;
   transition: all 0.3s;
+  position: relative;
 }
 
 .sidebar-nav a:not(.btn):hover {
@@ -149,6 +174,16 @@ img {
   box-shadow: 0 8px 18px rgba(0,0,0,0.25);
 }
 
+.sidebar-nav .btn:focus-visible {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 2px;
+}
+
+.sidebar-nav .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .close-menu-btn {
   display: none;
 }
@@ -156,8 +191,8 @@ img {
 /* MOBILE HEADER */
 .mobile-header {
   display: none;
-  background: #1a1a1a;
-  padding: 1rem;
+  background: var(--dark-bg);
+  padding: 1rem 1.5rem;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -165,11 +200,12 @@ img {
   left: 0;
   width: 100%;
   z-index: 999;
-  border-bottom: 2px solid #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .mobile-logo img {
-  height: 40px;
+  height: 36px;
 }
 
 .hamburger-btn {
@@ -177,19 +213,22 @@ img {
   border: none;
   cursor: pointer;
   padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .hamburger-btn .bar {
   display: block;
-  width: 25px;
-  height: 3px;
+  width: 24px;
+  height: 2px;
   background-color: var(--text-light);
-  margin: 5px 0;
   transition: 0.3s;
+  border-radius: 2px;
 }
 
 body.sidebar-open .hamburger-btn .bar:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
+  transform: rotate(-45deg) translateY(6px);
 }
 
 body.sidebar-open .hamburger-btn .bar:nth-child(2) {
@@ -197,7 +236,7 @@ body.sidebar-open .hamburger-btn .bar:nth-child(2) {
 }
 
 body.sidebar-open .hamburger-btn .bar:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
+  transform: rotate(45deg) translateY(-6px);
 }
 
 /* MAIN CONTENT AREA */
@@ -212,20 +251,21 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
 /* HERO */
 .hero {
   position: relative;
-  height: 75vh;
-  min-height: 600px;
+  height: 70vh;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.squarespace-cdn.com/content/60b445f2dcfc4f2bd6e8f45e/c43dd428-74f4-44ce-ae04-e5b57cce4cf6/Beer_Park_Lifestyle_11+%281%29.jpg?content-type=image%2Fjpeg') center/cover no-repeat;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 100%), 
+              url('https://images.squarespace-cdn.com/content/60b445f2dcfc4f2bd6e8f45e/1519ad93-0339-4218-adca-24f9404c506f/Beer_Park_Lifestyle_45+%281%29.jpg?content-type=image%2Fjpeg') center/cover no-repeat;
 }
 
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 100%);
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
   z-index: 1;
 }
 
@@ -235,58 +275,90 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
   text-align: center;
   padding: 2rem;
   color: var(--text-light);
-  max-width: 1000px;
+  max-width: 900px;
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-eyebrow {
   color: var(--accent-yellow);
-  font-size: 1.2rem;
+  font-size: 1rem;
   letter-spacing: 0.2em;
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 2rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: rgba(251, 191, 36, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
 }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 12vw, 8rem);
+  font-size: clamp(3.5rem, 10vw, 6rem);
   text-transform: uppercase;
   line-height: 0.9;
-  margin-bottom: 2rem;
-  letter-spacing: 0.05em;
-  text-shadow: 
-    3px 3px 0px rgba(0,0,0,0.9),
-    0 5px 40px rgba(0,0,0,1);
-  -webkit-text-stroke: 1px rgba(0,0,0,0.3);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+  color: var(--text-light);
+  text-shadow: 0 3px 20px rgba(0,0,0,0.8);
 }
 
 .hero-subtitle {
-  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
-  margin-bottom: 3rem;
-  letter-spacing: 0.05em;
-  font-weight: 500;
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  margin-bottom: 2rem;
+  font-weight: 400;
   line-height: 1.7;
-  text-shadow: 0 2px 15px rgba(0,0,0,0.9);
-  max-width: 800px;
+  color: var(--text-light);
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
 
 /* TICKER */
 .ticker {
-  border-top: 4px solid var(--primary-red);
-  border-bottom: 4px solid var(--primary-red);
+  background: linear-gradient(90deg, var(--primary-red-dark) 0%, var(--primary-red) 50%, var(--primary-red-dark) 100%);
   overflow: hidden;
   white-space: nowrap;
-  background: linear-gradient(90deg, #000 0%, #111 50%, #000 100%);
-  padding: 1rem 0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  padding: 1.25rem 0;
+  box-shadow: 0 4px 24px rgba(197, 48, 48, 0.3);
+  position: relative;
+}
+
+.ticker::before,
+.ticker::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+}
+
+.ticker::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--primary-red-dark) 0%, transparent 100%);
+}
+
+.ticker::after {
+  right: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--primary-red-dark) 100%);
 }
 
 .ticker-track {
   display: inline-block;
-  animation: scroll 35s linear infinite;
+  animation: scroll 40s linear infinite;
 }
 
 @keyframes scroll {
@@ -296,151 +368,132 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
 
 .ticker span {
   display: inline-block;
-  padding: 0 2rem;
-  font-size: 1.3rem;
+  padding: 0 3rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-weight: 700;
   color: var(--text-light);
 }
 
 .ticker .dot {
   color: var(--accent-yellow);
-  margin: 0 1rem;
-  font-size: 1.5rem;
+  margin: 0 1.5rem;
+  font-size: 1.2rem;
 }
 
-/* SPLIT SECTION */
-.split-section {
+/* HOURS SECTION */
+.hours-section {
   display: flex;
-  flex-wrap: wrap;
-  min-height: 650px;
+  min-height: 500px;
+  background: var(--light-bg);
+  overflow: hidden;
 }
 
-.split-image {
+.hours-image {
   flex: 1;
-  min-width: 50%;
-  background: url('https://images.squarespace-cdn.com/content/60b445f2dcfc4f2bd6e8f45e/1519ad93-0339-4218-adca-24f9404c506f/Beer_Park_Lifestyle_45+%281%29.jpg?content-type=image%2Fjpeg') center/cover no-repeat;
-  position: relative;
+  min-height: 500px;
+  background: url('https://images.squarespace-cdn.com/content/60b445f2dcfc4f2bd6e8f45e/1519ad93-0339-4218-adca-24f9404c506f/Beer_Park_Lifestyle_45+%281%29.jpg') center/cover;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
-.split-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, transparent 60%, var(--dark-bg) 100%);
-}
-
-.split-content {
+.hours-content {
   flex: 1;
-  min-width: 50%;
-  background: var(--dark-bg);
-  padding: 5rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 4rem;
+  background: var(--light-bg);
+  color: var(--dark-bg);
 }
 
-.split-eyebrow {
-  color: var(--accent-yellow);
-  font-size: 1rem;
-  letter-spacing: 0.2em;
-  font-weight: 900;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-}
-
-.split-title {
+.hours-content h2 {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5rem);
-  text-transform: uppercase;
-  color: var(--text-light);
-  line-height: 1;
-  letter-spacing: 0.05em;
+  font-size: 3rem;
   margin-bottom: 2rem;
+  text-transform: uppercase;
+  color: var(--dark-bg);
 }
 
-.split-content p {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-  color: rgba(255,255,255,0.9);
+.hours-content h2 .highlight {
+  color: var(--primary-red);
 }
 
 .hours-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .hour-item {
-  background: rgba(191,38,51,0.15);
-  border: 2px solid rgba(191,38,51,0.3);
-  border-left: 4px solid var(--primary-red);
-  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.hour-item .day {
-  font-weight: 900;
-  font-size: 0.9rem;
-  color: var(--accent-yellow);
+.day {
+  font-weight: 700;
+  color: var(--dark-bg);
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
 }
 
-.hour-item .time {
+.time {
+  color: var(--primary-red);
   font-weight: 700;
-  font-size: 1.2rem;
-  color: #fff;
+  font-size: 1rem;
 }
 
-/* INFO GRID SECTION */
+.hours-note {
+  padding: 1rem;
+  background: rgba(197, 38, 48, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-red);
+}
+
+.hours-note p {
+  color: var(--dark-bg);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* INFO GRID */
 .info-section {
-  padding: 8rem 2rem;
-  background: linear-gradient(135deg, var(--primary-red-dark) 0%, var(--primary-red) 100%);
-  position: relative;
-}
-
-.info-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 20px);
+  padding: 5rem 3rem;
+  background: var(--dark-bg);
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
-  position: relative;
-  z-index: 1;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 
 .section-eyebrow {
   color: var(--accent-yellow);
   font-size: 1rem;
   letter-spacing: 0.2em;
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   text-transform: uppercase;
   color: var(--text-light);
   line-height: 0.95;
   letter-spacing: 0.05em;
   margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
 }
 
 .section-subtitle {
@@ -453,165 +506,163 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
 
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 
 .info-card {
-  background: rgba(0,0,0,0.3);
-  border: 2px solid rgba(255,255,255,0.2);
-  padding: 2.5rem 2rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
   text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.info-card:hover {
-  background: rgba(0,0,0,0.5);
-  transform: translateY(-8px);
-  border-color: rgba(255,255,255,0.4);
-}
-
-.info-icon {
-  font-size: 3.5rem;
-  margin-bottom: 1.5rem;
-  line-height: 1;
-}
-
-.info-card-title {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  color: var(--text-light);
-  margin-bottom: 1rem;
-  letter-spacing: 0.05em;
-}
-
-.info-card-content {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.85);
-}
-
-.info-card-content a {
-  color: var(--accent-yellow);
-  font-weight: 700;
-  text-decoration: none;
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-red) 0%, var(--accent-yellow) 50%, var(--primary-red) 100%);
+  opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.info-card-content a:hover {
-  opacity: 0.7;
+.info-card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-4px);
+  border-color: rgba(197, 48, 48, 0.3);
+}
+
+.info-card:hover::before {
+  opacity: 1;
+}
+
+.info-card-icon {
+  font-size: 3rem;
+  color: var(--accent-yellow);
+  margin-bottom: 1rem;
+}
+
+.info-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.info-card p {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.info-card .highlight {
+  color: var(--accent-yellow);
+  font-weight: 700;
 }
 
 /* MAP SECTION */
 .map-section {
-  padding: 0;
-  background: #000;
+  padding: 5rem 3rem;
+  background: var(--dark-bg-secondary);
 }
 
-.map-wrapper {
+.map-container {
   position: relative;
-  height: 600px;
-  border-top: 4px solid var(--primary-red);
-  border-bottom: 4px solid var(--primary-red);
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.map-wrapper iframe {
+.map-container iframe {
   width: 100%;
   height: 100%;
   border: 0;
-  display: block;
-  filter: invert(90%) hue-rotate(180deg) brightness(1.2);
+  filter: grayscale(100%) contrast(1.2);
+  opacity: 0.8;
 }
 
 /* PARKING SECTION */
 .parking-section {
+  padding: 5rem 3rem;
   background: var(--dark-bg);
-  padding: 8rem 2rem;
-  color: var(--text-light);
-  position: relative;
-}
-
-.parking-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('https://www.toptal.com/designers/subtlepatterns/uploads/dark-wood.png');
-  opacity: 0.2;
-}
-
-.parking-section .section-title {
-  color: var(--text-light);
-}
-
-.parking-section .section-subtitle {
-  color: rgba(255,255,255,0.8);
 }
 
 .parking-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 
 .parking-card {
-  background: rgba(0,0,0,0.4);
-  border: 2px solid rgba(255,255,255,0.1);
-  border-top: 4px solid var(--primary-red);
-  padding: 2.5rem;
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.parking-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-yellow);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
 .parking-card:hover {
-  transform: translateY(-5px);
-  background: rgba(191,38,51,0.15);
-  border-color: var(--primary-red);
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-4px);
 }
 
-.parking-card-title {
+.parking-card:hover::before {
+  transform: scaleX(1);
+}
+
+.parking-card h3 {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
   text-transform: uppercase;
-  color: var(--accent-yellow);
-  margin-bottom: 1.5rem;
   letter-spacing: 0.05em;
 }
 
-.parking-card-content {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.9);
+.parking-card p {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
-.parking-card-content ul {
-  list-style: none;
-  margin-top: 1rem;
-}
-
-.parking-card-content li {
-  padding: 0.5rem 0;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.parking-card-content li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
+.parking-card .price {
   color: var(--accent-yellow);
-  font-weight: 900;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
 /* FOOTER */
 .site-footer {
-  background: #000;
+  background: linear-gradient(180deg, var(--dark-bg-secondary) 0%, #000 100%);
   padding: 3rem 2rem;
   text-align: center;
-  border-top: 2px solid #222;
+  border-top: 1px solid var(--border-color);
 }
 
 .socials {
@@ -622,23 +673,22 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
 }
 
 .socials svg {
-  width: 24px;
-  height: 24px;
-  fill: var(--text-light);
-  opacity: 0.7;
-  transition: all 0.3s;
+  width: 22px;
+  height: 22px;
+  fill: var(--text-muted);
+  transition: var(--transition);
 }
 
 .socials a:hover svg {
-  opacity: 1;
-  transform: scale(1.2);
   fill: var(--primary-red);
+  transform: translateY(-3px);
 }
 
 .site-footer p {
-  font-size: 0.9rem;
-  color: #888;
-  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  font-weight: 500;
 }
 
 /* RESPONSIVE */
@@ -651,7 +701,7 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
 
   body.sidebar-open .sidebar {
     transform: translateX(0);
-    box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+    box-shadow: 5px 0 30px rgba(0,0,0,0.5);
   }
 
   body.sidebar-open {
@@ -663,7 +713,7 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
   }
 
   .main-content {
-    padding-top: 66px;
+    padding-top: 60px;
   }
 
   .close-menu-btn {
@@ -671,60 +721,69 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: none;
+    background: rgba(0,0,0,0.2);
     border: none;
     cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+  }
+
+  .close-menu-btn:hover {
+    background: rgba(0,0,0,0.4);
   }
 
   .close-menu-btn svg {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     fill: var(--text-light);
   }
 }
 
 @media (max-width: 768px) {
-  .info-grid,
-  .parking-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .split-section {
+  .hours-section {
     flex-direction: column;
   }
 
-  .split-image {
-    min-height: 400px;
+  .hours-image {
+    width: 100%;
+    min-height: 300px;
+    clip-path: none;
   }
 
-  .split-content {
-    padding: 4rem 2rem;
+  .hours-content {
+    padding: 3rem 2rem;
   }
 
-  .hours-list {
+  .hero {
+    min-height: 450px;
+    height: 65vh;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .info-section, .map-section, .parking-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .info-grid, .parking-grid {
     grid-template-columns: 1fr;
-  }
-
-  .map-wrapper {
-    height: 400px;
   }
 }
 
-@media (max-width: 600px) {
-  .hero {
-    min-height: 500px;
-    height: 70vh;
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
   }
 
-  .info-section,
-  .parking-section {
-    padding: 5rem 1.5rem;
-  }
-
-  .info-card,
-  .parking-card {
-    padding: 2rem;
+  .hero-content {
+    padding: 1.5rem;
   }
 }
 </style>
@@ -761,9 +820,8 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
       <nav class="sidebar-nav">
         <ul>
           <li><a href="reservations.html" class="btn">RESERVATIONS</a></li>
-          <li><a href="index.html">HOME</a></li>
-          <li><a href="index.html#sports-schedule">EVENTS</a></li>
           <li><a href="menu.html">MENUS</a></li>
+          <li><a href="index.html#sports-schedule">EVENTS</a></li>
           <li><a href="private-events.html">PRIVATE EVENTS</a></li>
           <li><a href="visit.html">VISIT</a></li>
           <li><a href="#">CONTACT</a></li>
@@ -776,56 +834,52 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
     <!-- HERO -->
     <section class="hero">
       <div class="hero-content">
-        <div class="hero-eyebrow">PLAN YOUR VISIT</div>
-        <h1 class="hero-title">COME SEE US</h1>
-        <p class="hero-subtitle">Located at Paris Las Vegas, right on the Strip under the Eiffel Tower with stunning views of the Bellagio Fountains. Easy parking, great vibes, and unforgettable rooftop experiences await.</p>
+        <div class="hero-eyebrow">COME SEE US</div>
+        <h1 class="hero-title">VISIT BEER PARK</h1>
+        <p class="hero-subtitle">Located on the rooftop of Paris Las Vegas, we offer the best views of the Strip, 100+ craft beers, and an unforgettable Vegas experience.</p>
       </div>
     </section>
 
     <!-- TICKER -->
     <div class="ticker">
       <div class="ticker-track">
-        <span>OPEN 7 DAYS A WEEK</span><span class="dot">•</span>
-        <span>VALET & SELF-PARKING</span><span class="dot">•</span>
-        <span>WALK-INS WELCOME</span><span class="dot">•</span>
-        <span>RESERVATIONS RECOMMENDED</span><span class="dot">•</span>
-        <span>21+ VENUE</span><span class="dot">•</span>
-        <span>OPEN 7 DAYS A WEEK</span><span class="dot">•</span>
-        <span>VALET & SELF-PARKING</span><span class="dot">•</span>
-        <span>WALK-INS WELCOME</span><span class="dot">•</span>
-        <span>RESERVATIONS RECOMMENDED</span><span class="dot">•</span>
-        <span>21+ VENUE</span><span class="dot">•</span>
+        <span>ROOFTOP LOCATION</span><span class="dot">•</span>
+        <span>STRIP VIEWS</span><span class="dot">•</span>
+        <span>100+ CRAFT BEERS</span><span class="dot">•</span>
+        <span>75+ HD SCREENS</span><span class="dot">•</span>
+        <span>ROOFTOP LOCATION</span><span class="dot">•</span>
+        <span>STRIP VIEWS</span><span class="dot">•</span>
+        <span>100+ CRAFT BEERS</span><span class="dot">•</span>
+        <span>75+ HD SCREENS</span><span class="dot">•</span>
       </div>
     </div>
 
-    <!-- HOURS SPLIT SECTION -->
-    <section class="split-section">
-      <div class="split-image"></div>
-      <div class="split-content">
-        <div class="split-eyebrow">WHEN WE'RE OPEN</div>
-        <h2 class="split-title">HOURS</h2>
-        <p>We're open 7 days a week, ready to serve you the best rooftop experience on the Strip.</p>
-        
+    <!-- HOURS SECTION -->
+    <section class="hours-section">
+      <div class="hours-image"></div>
+      <div class="hours-content">
+        <h2>Hours of <span class="highlight">Operation</span></h2>
         <div class="hours-list">
           <div class="hour-item">
-            <div class="day">Monday - Thursday</div>
-            <div class="time">11AM - 11PM</div>
+            <span class="day">Monday - Thursday</span>
+            <span class="time">11:00 AM - 11:00 PM</span>
           </div>
           <div class="hour-item">
-            <div class="day">Friday</div>
-            <div class="time">11AM - 1AM</div>
+            <span class="day">Friday</span>
+            <span class="time">11:00 AM - 1:00 AM</span>
           </div>
           <div class="hour-item">
-            <div class="day">Saturday</div>
-            <div class="time">9AM - 1AM</div>
+            <span class="day">Saturday</span>
+            <span class="time">9:00 AM - 1:00 AM</span>
           </div>
           <div class="hour-item">
-            <div class="day">Sunday</div>
-            <div class="time">9AM - 11PM</div>
+            <span class="day">Sunday</span>
+            <span class="time">9:00 AM - 11:00 PM</span>
           </div>
         </div>
-        
-        <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.8;">*Hours may vary during special events or holidays</p>
+        <div class="hours-note">
+          <p><strong>Note:</strong> Hours may vary during special events or holidays.</p>
+        </div>
       </div>
     </section>
 
@@ -833,106 +887,88 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
     <section class="info-section">
       <div class="container">
         <div class="section-header">
-          <div class="section-eyebrow">GOOD TO KNOW</div>
-          <h2 class="section-title">BEFORE YOU VISIT</h2>
-          <p class="section-subtitle">Quick essentials to help you plan your Beer Park experience.</p>
+          <div class="section-eyebrow">LOCATION DETAILS</div>
+          <h2 class="section-title">GETTING HERE</h2>
+          <p class="section-subtitle">Everything you need to know about visiting Beer Park Las Vegas.</p>
         </div>
-
         <div class="info-grid">
           <div class="info-card">
-            <div class="info-icon">📍</div>
-            <h3 class="info-card-title">LOCATION</h3>
-            <div class="info-card-content">
-              <p><strong>3655 S Las Vegas Blvd</strong><br>Las Vegas, NV 89109<br><br>Paris Las Vegas - Rooftop<br><br><a href="tel:7023315100">(702) 331-5100</a></p>
-            </div>
+            <div class="info-card-icon">📍</div>
+            <h3>Address</h3>
+            <p>3655 S Las Vegas Blvd<br>Las Vegas, NV 89109</p>
+            <p class="highlight">Paris Las Vegas Rooftop</p>
           </div>
-
           <div class="info-card">
-            <div class="info-icon">🎟️</div>
-            <h3 class="info-card-title">RESERVATIONS</h3>
-            <div class="info-card-content">
-              <p>Highly recommended for weekends and game days. Walk-ins always welcome based on availability.</p>
-            </div>
+            <div class="info-card-icon">📞</div>
+            <h3>Phone</h3>
+            <p><a href="tel:7023315100">(702) 331-5100</a></p>
+            <p class="highlight">Daily 11AM - Close</p>
           </div>
-
           <div class="info-card">
-            <div class="info-icon">👔</div>
-            <h3 class="info-card-title">DRESS CODE</h3>
-            <div class="info-card-content">
-              <p>Casual rooftop attire. 21+ venue - valid ID required. No tank tops or athletic wear.</p>
-            </div>
+            <div class="info-card-icon">🚗</div>
+            <h3>Parking</h3>
+            <p>Valet and self-parking available at Paris Las Vegas</p>
+            <p class="highlight">Elevator access to rooftop</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">👥</div>
+            <h3>Capacity</h3>
+            <p>Up to 1,200 guests for events</p>
+            <p class="highlight">17,000 sq ft venue</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🍺</div>
+            <h3>Beer Selection</h3>
+            <p>100+ craft beers on tap</p>
+            <p class="highlight">16oz / 23oz / 64oz pours</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📺</div>
+            <h3>Entertainment</h3>
+            <p>75+ HD screens for sports</p>
+            <p class="highlight">Every game, every day</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MAP -->
+    <!-- MAP SECTION -->
     <section class="map-section">
-      <div class="map-wrapper">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3223.6558144678787!2d-115.17239768473!3d36.112190380092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8c430cb9de9d7%3A0x9c2b8e89b7dcba76!2sBeer%20Park!5e0!3m2!1sen!2sus!4v1636739284619!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">FIND US</div>
+          <h2 class="section-title">LOCATION MAP</h2>
+          <p class="section-subtitle">Located on the Strip at Paris Las Vegas, with easy access from all major hotels.</p>
+        </div>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3223.6558144678787!2d-115.17239768473!3d36.112190380092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8c430cb9de9d7%3A0x9c2b8e89b7dcba76!2sBeer%20Park!5e0!3m2!1sen!2sus!4v1636739284619!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+        </div>
       </div>
     </section>
 
-    <!-- PARKING -->
+    <!-- PARKING SECTION -->
     <section class="parking-section">
       <div class="container">
         <div class="section-header">
-          <div class="section-eyebrow">GETTING HERE</div>
-          <h2 class="section-title">PARKING INFO</h2>
-          <p class="section-subtitle">Valet and self-parking are available through the Paris Las Vegas hotel garage.</p>
+          <div class="section-eyebrow">PARKING INFO</div>
+          <h2 class="section-title">PARKING OPTIONS</h2>
+          <p class="section-subtitle">Convenient parking options at Paris Las Vegas.</p>
         </div>
-
         <div class="parking-grid">
           <div class="parking-card">
-            <h3 class="parking-card-title">VALET PARKING</h3>
-            <div class="parking-card-content">
-              <p>Available 24/7 at the Paris Las Vegas main entrance.</p>
-              <ul>
-                <li>Fast and convenient drop-off</li>
-                <li>Direct elevator access to Beer Park</li>
-                <li>Standard valet rates apply</li>
-                <li>Complimentary for hotel guests</li>
-              </ul>
-            </div>
+            <h3>Valet Parking</h3>
+            <p>Full-service valet parking available at the main entrance of Paris Las Vegas.</p>
+            <p class="price">$15-25 (varies by day/time)</p>
           </div>
-
           <div class="parking-card">
-            <h3 class="parking-card-title">SELF-PARKING</h3>
-            <div class="parking-card-content">
-              <p>Multi-level parking garage with easy access.</p>
-              <ul>
-                <li>Enter from Flamingo Road or Las Vegas Blvd</li>
-                <li>Over 3,000 spaces available</li>
-                <li>Well-lit and secure facility</li>
-                <li>Standard parking rates apply</li>
-              </ul>
-            </div>
+            <h3>Self-Parking</h3>
+            <p>Self-parking garage with direct elevator access to the rooftop.</p>
+            <p class="price">$10-20 (varies by day/time)</p>
           </div>
-
           <div class="parking-card">
-            <h3 class="parking-card-title">RIDESHARE</h3>
-            <div class="parking-card-content">
-              <p>Uber and Lyft drop-off at Paris Las Vegas main entrance.</p>
-              <ul>
-                <li>Designated rideshare pickup zone</li>
-                <li>Quick access to rooftop</li>
-                <li>No parking fees</li>
-                <li>Recommended for late nights</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="parking-card">
-            <h3 class="parking-card-title">PUBLIC TRANSIT</h3>
-            <div class="parking-card-content">
-              <p>Accessible via Las Vegas public transportation.</p>
-              <ul>
-                <li>Deuce bus stops directly in front</li>
-                <li>Las Vegas Monorail nearby</li>
-                <li>SDX express bus service available</li>
-                <li>Affordable and convenient option</li>
-              </ul>
-            </div>
+            <h3>Ride Share</h3>
+            <p>Uber, Lyft, and taxi drop-off at the main entrance of Paris Las Vegas.</p>
+            <p class="price">Varies by distance</p>
           </div>
         </div>
       </div>
@@ -990,3 +1026,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
