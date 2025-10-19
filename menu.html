@@ -1,57 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Menu | Beer Park Las Vegas</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* --- 0. CSS VARIABLES & RESET --- */
+/* CSS VARIABLES & RESET */
 :root {
-  /* Updated with Official Brand Guidelines & User Feedback */
-  --primary-red: rgb(191, 38, 51); /* PMS 186 */
-  --primary-red-dark: rgb(160, 30, 42); 
-  --dark-bg: rgb(65, 64, 66); /* 90% Black */
-  --accent-yellow: #FFD700; /* Vibrant Yellow Accent */
-  --light-bg: #ffffff; /* Pure White */
+  --primary-red: #bf2633;
+  --primary-red-dark: #a01e2a;
+  --dark-bg: #414042;
+  --accent-yellow: #beb38f;
+  --light-bg: #ffffff;
   --screen-bg: #1a1a1a;
   --text-light: #ffffff;
-  --text-dark: rgb(65, 64, 66); 
-  --font-display: 'Anton', sans-serif;
-  --font-body: 'Roboto', sans-serif;
- 
-  /* Pattern overlays */
-  --dot-pattern: radial-gradient(circle, rgba(0,0,0,0.1) 1px, transparent 1px);
-  --diagonal-pattern: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.03) 10px, rgba(0,0,0,0.03) 20px);
-  --grid-pattern: 
-    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  --text-dark: #414042;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: var(--font-body);
   background: var(--dark-bg);
   color: var(--text-light);
   overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a { text-decoration: none; color: inherit; }
-img { max-width: 100%; height: auto; display: block; }
+::selection {
+  background: var(--primary-red);
+  color: var(--text-light);
+}
 
-/* --- 1. LAYOUT & STRUCTURE --- */
-.site-wrapper { display: flex; position: relative; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-/* --- 2. SIDEBAR NAVIGATION (DESKTOP) --- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* LAYOUT & STRUCTURE */
+.site-wrapper {
+  display: flex;
+  position: relative;
+}
+
+/* SIDEBAR NAVIGATION (DESKTOP) */
 .sidebar {
   background: var(--primary-red);
-  background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, .05), rgba(0, 0, 0, .05) 2px, transparent 2px, transparent 10px);
+  background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 2px, transparent 2px, transparent 10px);
   border-right: 2px solid #000;
   color: var(--text-light);
   display: flex;
@@ -67,6 +86,15 @@ img { max-width: 100%; height: auto; display: block; }
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.03) 10px, rgba(0, 0, 0, 0.03) 20px);
+  pointer-events: none;
+}
+
 .sidebar-content {
   position: sticky;
   top: 0;
@@ -76,12 +104,44 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: center;
   padding-bottom: 2rem;
 }
-.sidebar-logo { padding: 2.5rem 1.5rem 1.5rem; }
-.sidebar-logo img { height: 120px; }
-.sidebar-info { text-align: center; font-size: 1rem; line-height: 1.6; margin-bottom: 2rem; padding: 0 1rem; }
-.sidebar-nav { width: 100%; }
-.sidebar-nav ul { list-style: none; width: 100%; padding: 0 1.5rem; }
-.sidebar-nav li { margin-bottom: 0.75rem; }
+
+.sidebar-logo {
+  padding: 2.5rem 1.5rem 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo:hover {
+  transform: scale(1.05);
+}
+
+.sidebar-logo img {
+  height: 160px;
+}
+
+.sidebar-info {
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  padding: 0 1.5rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.sidebar-nav {
+  width: 100%;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  width: 100%;
+  padding: 0 1.25rem;
+}
+
+.sidebar-nav li {
+  margin-bottom: 0.5rem;
+}
+
 .sidebar-nav a {
   display: block;
   padding: 0.75rem 0;
@@ -89,25 +149,50 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--text-light);
   text-transform: uppercase;
   font-weight: 700;
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
   text-align: center;
   transition: all 0.3s;
   position: relative;
 }
-.sidebar-nav a:not(.btn):hover { color: var(--accent-yellow); }
+
+.sidebar-nav a:not(.btn):hover {
+  color: var(--accent-yellow);
+}
+
 .sidebar-nav .btn {
   background: var(--dark-bg);
-  padding: 1rem;
+  padding: 1rem 1.25rem;
   border: 2px solid #000;
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
-.sidebar-nav .btn:hover { background: var(--accent-yellow); color: var(--text-dark); }
-.close-menu-btn { display: none; }
 
-/* --- 3. MOBILE HEADER --- */
+.sidebar-nav .btn:hover {
+  background: var(--accent-yellow);
+  color: var(--text-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.sidebar-nav .btn:focus-visible {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 2px;
+}
+
+.sidebar-nav .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.close-menu-btn {
+  display: none;
+}
+
+/* MOBILE HEADER */
 .mobile-header {
   display: none;
-  background: var(--screen-bg);
-  padding: 1rem;
+  background: var(--dark-bg);
+  padding: 1rem 1.5rem;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -115,407 +200,668 @@ img { max-width: 100%; height: auto; display: block; }
   left: 0;
   width: 100%;
   z-index: 999;
-  border-bottom: 2px solid #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
-.mobile-logo img { height: 40px; }
-.hamburger-btn { background: none; border: none; cursor: pointer; padding: 0.5rem; }
-.hamburger-btn .bar { display: block; width: 25px; height: 3px; background-color: var(--text-light); margin: 5px 0; transition: 0.3s; }
 
-/* Hamburger animation */
-body.sidebar-open .hamburger-btn .bar:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
+.mobile-logo img {
+  height: 36px;
 }
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hamburger-btn .bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-light);
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+body.sidebar-open .hamburger-btn .bar:nth-child(1) {
+  transform: rotate(-45deg) translateY(6px);
+}
+
 body.sidebar-open .hamburger-btn .bar:nth-child(2) {
   opacity: 0;
 }
+
 body.sidebar-open .hamburger-btn .bar:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
+  transform: rotate(45deg) translateY(-6px);
 }
 
-/* --- 4. MAIN CONTENT AREA --- */
-.main-content { flex: 1; overflow-y: auto; background: var(--dark-bg); position: relative; }
-
-/* MENU HERO */
-.menu-hero {
+/* MAIN CONTENT AREA */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--dark-bg);
   position: relative;
-  height: 60vh;
-  min-height: 400px;
+  max-width: 100vw;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 70vh;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('https://images.squarespace-cdn.com/content/60b445f2dcfc4f2bd6e8f45e/0076fc49-d2ae-4b81-9ad0-529d859e1461/Beer_Park_Lifestyle_21+%281%29.jpg?content-type=image%2Fjpeg') center/cover no-repeat;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 100%), 
+              url('https://images.squarespace-cdn.com/content/60b445f2dcfc4f2bd6e8f45e/1519ad93-0339-4218-adca-24f9404c506f/Beer_Park_Lifestyle_45+%281%29.jpg?content-type=image%2Fjpeg') center/cover no-repeat;
 }
-.menu-hero::after { 
-  content: ""; 
-  position: absolute; 
-  inset: 0; 
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(191, 38, 51, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%); 
-  z-index: 1; 
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+  z-index: 1;
 }
-.menu-hero-content { 
-  position: relative; 
-  z-index: 2; 
-  text-align: center; 
-  padding: 2rem; 
-  color: var(--text-light); 
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-light);
+  max-width: 900px;
+  animation: fadeInUp 0.8s ease;
 }
-.menu-hero-title { 
-  font-family: var(--font-display); 
-  font-size: clamp(3rem, 8vw, 5rem); 
-  text-transform: uppercase; 
-  line-height: .95; 
-  margin-bottom: 1rem; 
-  letter-spacing: .02em; 
-  text-shadow: 0 4px 20px rgba(0,0,0,0.7); 
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.menu-hero-subtitle { 
-  font-size: clamp(1rem, 3vw, 1.4rem); 
-  margin-bottom: 2.5rem; 
-  letter-spacing: .1em; 
-  font-weight: 700; 
-  text-transform: uppercase; 
+
+.hero-eyebrow {
   color: var(--accent-yellow);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: rgba(251, 191, 36, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+  color: var(--text-light);
+  text-shadow: 0 3px 20px rgba(0,0,0,0.8);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  margin-bottom: 2rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-light);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* TICKER */
+.ticker {
+  background: linear-gradient(90deg, var(--primary-red-dark) 0%, var(--primary-red) 50%, var(--primary-red-dark) 100%);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 1.25rem 0;
+  box-shadow: 0 4px 24px rgba(197, 48, 48, 0.3);
+  position: relative;
+}
+
+.ticker::before,
+.ticker::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+}
+
+.ticker::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--primary-red-dark) 0%, transparent 100%);
+}
+
+.ticker::after {
+  right: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--primary-red-dark) 100%);
+}
+
+.ticker-track {
+  display: inline-block;
+  animation: scroll 40s linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker span {
+  display: inline-block;
+  padding: 0 3rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.ticker .dot {
+  color: var(--accent-yellow);
+  margin: 0 1.5rem;
+  font-size: 1.2rem;
 }
 
 /* MENU NAVIGATION */
 .menu-nav {
-  background: var(--primary-red);
+  background: var(--dark-bg);
   padding: 2rem 0;
-  border-top: 4px solid var(--accent-yellow);
-  border-bottom: 4px solid var(--accent-yellow);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
 }
+
 .menu-nav-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
+
 .menu-nav-tabs {
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
+
 .menu-nav-tab {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background: rgba(0,0,0,0.2);
+  background: transparent;
   border: 2px solid transparent;
-  padding: 1rem 2rem;
-  cursor: pointer;
-  color: rgba(255,255,255,0.8);
-  position: relative;
-  transition: all 0.3s;
-  border-radius: 4px;
-}
-.menu-nav-tab::after { 
-  content: ''; 
-  position: absolute; 
-  bottom: -4px; 
-  left: 0; 
-  width: 100%; 
-  height: 4px; 
-  background: var(--accent-yellow); 
-  transform: scaleX(0); 
-  transition: transform 0.3s ease-in-out; 
-}
-.menu-nav-tab.active { 
-  color: var(--text-light); 
-  background: rgba(255, 215, 0, 0.2);
-  border-color: var(--accent-yellow);
-}
-.menu-nav-tab.active::after { transform: scaleX(1); }
-.menu-nav-tab:hover:not(.active) {
   color: var(--text-light);
-  background: rgba(255,255,255,0.1);
+  padding: 0.875rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-nav-tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary-red-dark) 0%, var(--primary-red) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.menu-nav-tab:hover {
+  color: var(--text-light);
+  border-color: var(--primary-red);
+  transform: translateY(-2px);
+}
+
+.menu-nav-tab.active {
+  background: linear-gradient(135deg, var(--primary-red-dark) 0%, var(--primary-red) 100%);
+  color: var(--text-light);
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(197, 48, 48, 0.3);
 }
 
 /* MENU CONTENT */
 .menu-content-section {
-  padding: 4rem 0;
+  padding: 0;
   background: var(--dark-bg);
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .menu-content {
   display: none;
-  animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s ease;
 }
-.menu-content.active { 
-  display: block; 
-}
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-
-/* MENU CATEGORIES */
-.menu-category {
-  margin-bottom: 4rem;
-  background: rgba(0,0,0,0.3);
-  border-radius: 8px;
-  padding: 2rem;
-  border: 1px solid rgba(255,255,255,0.1);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-.menu-category h3 { 
-  font-family: var(--font-display); 
-  font-size: 2.5rem; 
-  letter-spacing: 0.05em; 
-  margin-bottom: 2rem; 
-  border-bottom: 3px solid var(--accent-yellow); 
-  padding-bottom: 0.5rem; 
-  color: var(--accent-yellow);
+
+.menu-content.active {
+  display: block;
+}
+
+/* FEATURED SECTION */
+.featured-section {
+  background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%), 
+              url('https://images.squarespace-cdn.com/content/60b445f2dcfc4f2bd6e8f45e/0076fc49-d2ae-4b81-9ad0-529d859e1461/Beer_Park_Lifestyle_21+%281%29.jpg?content-type=image%2Fjpeg') center/cover no-repeat;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+  z-index: 1;
+}
+
+.featured-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--text-light);
   text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 2;
+  color: var(--text-light);
 }
+
+.featured-subtitle {
+  font-size: 1.1rem;
+  color: var(--accent-yellow);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 2;
+}
+
+/* MENU CATEGORY */
+.menu-category {
+  padding: 4rem 2rem;
+  position: relative;
+  background: var(--dark-bg);
+}
+
+.menu-category:nth-child(even) {
+  background: var(--dark-bg);
+}
+
+.menu-category h3 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--primary-red);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 3rem;
+  text-align: center;
+  position: relative;
+}
+
+.menu-category h3::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent-yellow) 50%, transparent 100%);
+  border-radius: 2px;
+}
+
 .menu-items {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
+
 .menu-item {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6) 0%, rgba(15, 15, 15, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.75rem;
+  transition: all 0.3s ease;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1.5rem;
-  background: rgba(255,255,255,0.05);
-  border-radius: 8px;
-  border-left: 4px solid var(--primary-red);
-  transition: all 0.3s;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
 }
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(197, 48, 48, 0.1) 50%, transparent 100%);
+  transition: left 0.5s ease;
+}
+
 .menu-item:hover {
-  background: rgba(255,255,255,0.08);
-  transform: translateX(5px);
+  transform: translateY(-4px);
+  border-color: rgba(197, 48, 48, 0.3);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
+
+.menu-item:hover::before {
+  left: 100%;
+}
+
 .menu-item-info {
   flex: 1;
-  margin-right: 2rem;
+  position: relative;
+  z-index: 1;
 }
-.menu-item h4 { 
-  font-size: 1.4rem; 
-  font-weight: 700; 
-  margin-bottom: 0.5rem; 
+
+.menu-item-info h4 {
+  font-size: 1.35rem;
   color: var(--text-light);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.menu-item p { 
-  color: rgba(255,255,255,0.8); 
-  line-height: 1.6; 
   margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
+
+.menu-item-info p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
 .menu-item-price {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: var(--accent-yellow);
   font-weight: 700;
   white-space: nowrap;
-}
-
-/* BEER LIST STYLES */
-.beer-category {
-  margin-bottom: 3rem;
-}
-.beer-category h4 {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--accent-yellow);
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 2px solid var(--primary-red);
-  padding-bottom: 0.5rem;
-}
-.beer-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-}
-.beer-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: rgba(255,255,255,0.05);
+  padding: 0.5rem 1rem;
+  background: rgba(251, 191, 36, 0.1);
   border-radius: 6px;
-  border-left: 3px solid var(--accent-yellow);
-  transition: all 0.3s;
-}
-.beer-item:hover {
-  background: rgba(255,255,255,0.08);
-  transform: translateX(3px);
-}
-.beer-name {
-  font-weight: 700;
-  color: var(--text-light);
-  font-size: 1.1rem;
-}
-.beer-style {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.7);
-  margin-top: 0.25rem;
-}
-.beer-abv {
-  font-family: var(--font-display);
-  color: var(--accent-yellow);
-  font-weight: 700;
-  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
 }
 
-/* COCKTAIL STYLES */
-.cocktail-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1.5rem;
-  background: rgba(255,255,255,0.05);
-  border-radius: 8px;
-  border-left: 4px solid var(--accent-yellow);
-  margin-bottom: 1rem;
-  transition: all 0.3s;
+/* BEER STYLES */
+.beer-section {
+  padding: 4rem 2rem;
+  background: var(--dark-bg);
 }
-.cocktail-item:hover {
-  background: rgba(255,255,255,0.08);
-  transform: translateX(5px);
+
+.beer-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.cocktail-info {
-  flex: 1;
-  margin-right: 2rem;
-}
-.cocktail-name {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text-light);
-  margin-bottom: 0.5rem;
+
+.beer-intro h3 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--primary-red);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-}
-.cocktail-description {
-  color: rgba(255,255,255,0.8);
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
-}
-.cocktail-ingredients {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.6);
-  font-style: italic;
-}
-.cocktail-price {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--accent-yellow);
-  font-weight: 700;
-  white-space: nowrap;
+  margin-bottom: 1rem;
 }
 
-/* SECTION DIVIDERS */
-.section-divider {
-  width: 100%;
+.beer-intro p {
+  font-size: 1.1rem;
+  color: var(--accent-yellow);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.beer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.beer-card {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6) 0%, rgba(15, 15, 15, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.75rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.beer-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
   height: 4px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--primary-red) 20%, 
-    var(--accent-yellow) 50%, 
-    var(--primary-red) 80%, 
-    transparent 100%);
-  margin: 0;
-  border: none;
+  background: linear-gradient(90deg, var(--primary-red) 0%, var(--accent-yellow) 50%, var(--primary-red) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.beer-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(197, 48, 48, 0.3);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.beer-card:hover::before {
+  opacity: 1;
+}
+
+.beer-card-header {
+  margin-bottom: 0.5rem;
+}
+
+.beer-name {
+  font-size: 1.15rem;
+  color: var(--text-light);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.beer-style {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.beer-abv {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.75rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--accent-yellow);
+  font-weight: 700;
+  background: rgba(251, 191, 36, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
 }
 
 /* FOOTER */
-.site-footer { 
-  background: #000; 
-  padding: 3rem 2rem; 
-  text-align: center; 
-  border-top: 2px solid #222; 
-}
-.socials { 
-  display: flex; 
-  gap: 2rem; 
-  justify-content: center; 
-  margin-bottom: 1.5rem; 
-}
-.socials svg { 
-  width: 24px; 
-  height: 24px; 
-  fill: var(--text-light); 
-  opacity: 0.7; 
-  transition: all 0.3s; 
-}
-.socials a:hover svg { 
-  opacity: 1; 
-  transform: scale(1.2); 
-  fill: var(--primary-red); 
-}
-.site-footer p { 
-  font-size: 0.9rem; 
-  color: #888; 
-  letter-spacing: 0.05em; 
+.site-footer {
+  background: linear-gradient(180deg, var(--dark-bg-secondary) 0%, #000 100%);
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
 }
 
-/* RESPONSIVE STYLES */
+.socials {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.socials svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.socials a:hover svg {
+  fill: var(--primary-red);
+  transform: translateY(-3px);
+}
+
+.site-footer p {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+/* RESPONSIVE */
 @media (max-width: 1023px) {
-  .sidebar { position: fixed; height: 100vh; transform: translateX(-100%); border-right: none; overflow-y: auto; }
-  body.sidebar-open .sidebar { transform: translateX(0); box-shadow: 5px 0 25px rgba(0,0,0,0.5); }
-  body.sidebar-open { overflow: hidden; }
-  .mobile-header { display: flex; }
-  .main-content { padding-top: 66px; }
-  .close-menu-btn { display: block; position: absolute; top: 1rem; right: 1rem; background: none; border: none; cursor: pointer; z-index: 10; }
-  .close-menu-btn svg { width: 30px; height: 30px; fill: var(--text-light); }
-  .sidebar-content { padding-bottom: 2rem; }
+  .sidebar {
+    position: fixed;
+    height: 100vh;
+    transform: translateX(-100%);
+  }
+
+  body.sidebar-open .sidebar {
+    transform: translateX(0);
+    box-shadow: 5px 0 30px rgba(0,0,0,0.5);
+  }
+
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .main-content {
+    padding-top: 60px;
+  }
+
+  .close-menu-btn {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0,0,0,0.2);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .close-menu-btn:hover {
+    background: rgba(0,0,0,0.4);
+  }
+
+  .close-menu-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-light);
+  }
 }
 
 @media (max-width: 768px) {
   .menu-nav-tabs {
-    flex-direction: column;
-    align-items: center;
+    gap: 0.75rem;
   }
+
   .menu-nav-tab {
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
+    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
   }
+
   .menu-item {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 1rem;
   }
-  .menu-item-info {
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
+
   .menu-item-price {
     align-self: flex-end;
   }
-  .beer-list {
+
+  .hero {
+    min-height: 450px;
+    height: 65vh;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .beer-grid {
     grid-template-columns: 1fr;
   }
-  .cocktail-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .cocktail-info {
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
-  .cocktail-price {
-    align-self: flex-end;
+
+  .menu-category h3 {
+    font-size: 2rem;
   }
 }
 
-@media (min-width: 1024px) {
-  .site-wrapper { flex-direction: row; }
-  .mobile-header { display: none; }
-  .main-content { padding-top: 0; }
-  .sidebar { transform: translateX(0); position: sticky; }
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+  }
+
+  .hero-content {
+    padding: 1.5rem;
+  }
+
+  .menu-category {
+    padding: 3rem 1.5rem;
+  }
 }
 </style>
 </head>
 <body>
 
 <div class="site-wrapper">
- 
   <header class="mobile-header">
     <a href="index.html" class="mobile-logo" aria-label="Home">
-      <img src="https://uploadthingy.s3.us-west-1.amazonaws.com/jZN7L7rXGfQnmcVSEmMgsD/Beer_Park_Logo.png" alt="Beer Park Logo">
+      <img loading="lazy" src="https://uploadthingy.s3.us-west-1.amazonaws.com/jZN7L7rXGfQnmcVSEmMgsD/Beer_Park_Logo.png" alt="Beer Park Logo">
     </a>
     <button class="hamburger-btn" id="hamburger-btn" aria-label="Open Menu">
       <span class="bar"></span>
@@ -523,7 +869,7 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
       <span class="bar"></span>
     </button>
   </header>
- 
+
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-content">
       <button class="close-menu-btn" id="close-menu-btn" aria-label="Close Menu">
@@ -533,7 +879,7 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
       </button>
       <div class="sidebar-logo">
         <a href="index.html" aria-label="Home">
-          <img src="https://uploadthingy.s3.us-west-1.amazonaws.com/jZN7L7rXGfQnmcVSEmMgsD/Beer_Park_Logo.png" alt="Beer Park Logo">
+          <img loading="lazy" src="https://uploadthingy.s3.us-west-1.amazonaws.com/jZN7L7rXGfQnmcVSEmMgsD/Beer_Park_Logo.png" alt="Beer Park Logo">
         </a>
       </div>
       <div class="sidebar-info">
@@ -542,9 +888,8 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
       <nav class="sidebar-nav">
         <ul>
           <li><a href="reservations.html" class="btn">RESERVATIONS</a></li>
-          <li><a href="index.html">HOME</a></li>
-          <li><a href="index.html#sports-schedule">EVENTS</a></li>
           <li><a href="menu.html">MENUS</a></li>
+          <li><a href="index.html#sports-schedule">EVENTS</a></li>
           <li><a href="private-events.html">PRIVATE EVENTS</a></li>
           <li><a href="visit.html">VISIT</a></li>
           <li><a href="#">CONTACT</a></li>
@@ -554,13 +899,30 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
   </aside>
 
   <main class="main-content">
-    <section class="menu-hero">
-      <div class="menu-hero-content">
-        <h1 class="menu-hero-title">THE GRUB & THE BREWS</h1>
-        <p class="menu-hero-subtitle">CLASSIC GAME DAY EATS AND A BEER LIST AS BIG AS THE VEGAS STRIP</p>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-eyebrow">FOOD & DRINK</div>
+        <h1 class="hero-title">THE GRUB & THE BREWS</h1>
+        <p class="hero-subtitle">Classic game day eats and a beer list as big as the Vegas Strip. From crispy wings to craft cocktails, we've got everything you need for the ultimate sports bar experience.</p>
       </div>
     </section>
 
+    <!-- TICKER -->
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>100+ CRAFT BEERS</span><span class="dot">•</span>
+        <span>FRESH WINGS & BURGERS</span><span class="dot">•</span>
+        <span>PREMIUM COCKTAILS</span><span class="dot">•</span>
+        <span>GAME DAY SPECIALS</span><span class="dot">•</span>
+        <span>100+ CRAFT BEERS</span><span class="dot">•</span>
+        <span>FRESH WINGS & BURGERS</span><span class="dot">•</span>
+        <span>PREMIUM COCKTAILS</span><span class="dot">•</span>
+        <span>GAME DAY SPECIALS</span><span class="dot">•</span>
+      </div>
+    </div>
+
+    <!-- MENU NAVIGATION -->
     <nav class="menu-nav">
       <div class="menu-nav-container">
         <div class="menu-nav-tabs">
@@ -572,10 +934,16 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
       </div>
     </nav>
 
+    <!-- MENU CONTENT -->
     <section class="menu-content-section">
       <div class="container">
         <!-- FOOD MENU -->
         <div id="food" class="menu-content active">
+          <div class="featured-section">
+            <h2 class="featured-title">GAME DAY GRUB</h2>
+            <p class="featured-subtitle">Classic Sports Bar Favorites Done Right</p>
+          </div>
+
           <div class="menu-category">
             <h3>Appetizers</h3>
             <div class="menu-items">
@@ -933,888 +1301,425 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
 
         <!-- BEER MENU -->
         <div id="beer" class="menu-content">
-          <div class="beer-category">
-            <h4>DRAFT BEER</h4>
-            <p style="color: var(--accent-yellow); margin-bottom: 2rem; font-weight: 700;">16oz/23oz/64oz</p>
-            <div class="beer-list">
-              <div class="beer-item">
-                <div>
+          <div class="featured-section">
+            <h2 class="featured-title">CRAFT BEER SELECTION</h2>
+            <p class="featured-subtitle">100+ Beers on Tap • 16oz / 23oz / 64oz</p>
+          </div>
+
+          <div class="beer-section">
+            <div class="beer-grid">
+              <div class="beer-card">
+                <div class="beer-abv">7.0%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Able Baker Atomic Duck</div>
                   <div class="beer-style">American IPA</div>
                 </div>
-                <div class="beer-abv">7.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">5.3%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Alaskan Brewing Amber Ale</div>
                   <div class="beer-style">Amber Ale</div>
                 </div>
-                <div class="beer-abv">5.3%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">5.3%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Big Sky Brewery — Moose Drool</div>
                   <div class="beer-style">Brown Ale</div>
                 </div>
-                <div class="beer-abv">5.3%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">4.8%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Bitburger</div>
                   <div class="beer-style">German Pils</div>
                 </div>
-                <div class="beer-abv">4.8%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">6.5%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Blake's — Triple Jam</div>
                   <div class="beer-style">Hard Cider</div>
                 </div>
-                <div class="beer-abv">6.5%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">4.2%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Bud Light</div>
                   <div class="beer-style">American Lager</div>
                 </div>
-                <div class="beer-abv">4.2%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">5.0%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Budweiser Signature</div>
                   <div class="beer-style">American Lager</div>
                 </div>
-                <div class="beer-abv">5.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">4.1%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Busch Light</div>
                   <div class="beer-style">American Lager</div>
                 </div>
-                <div class="beer-abv">4.1%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">6.4%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Crafthaus Evocation</div>
                   <div class="beer-style">Belgian Style Saison</div>
                 </div>
-                <div class="beer-abv">6.4%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">8.2%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Elysian — Space Dust</div>
                   <div class="beer-style">American IPA</div>
                 </div>
-                <div class="beer-abv">8.2%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">6.0%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Elysian — Contact Haze</div>
                   <div class="beer-style">Hazy IPA</div>
                 </div>
-                <div class="beer-abv">6.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">4.5%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Estrella Jalisco</div>
                   <div class="beer-style">Pilsner</div>
                 </div>
-                <div class="beer-abv">4.5%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">4.7%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Founders — All Day</div>
                   <div class="beer-style">Session IPA</div>
                 </div>
-                <div class="beer-abv">4.7%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">8.3%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Founders — Breakfast Stout</div>
                   <div class="beer-style">Chocolate Coffee Oatmeal Stout</div>
                 </div>
-                <div class="beer-abv">8.3%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">5.0%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Four Peak — Bad Birdie</div>
                   <div class="beer-style">Juicy Golden Ale</div>
                 </div>
-                <div class="beer-abv">5.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">4.2%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Four Peak — Peach Ale</div>
                   <div class="beer-style">Golden Fruit Ale</div>
                 </div>
-                <div class="beer-abv">4.2%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">5.0%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Four Peaks — The Joy Bus Wow</div>
                   <div class="beer-style">American Pale Wheat Ale</div>
                 </div>
-                <div class="beer-abv">5.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">5.0%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Franziskaner — Weissbier</div>
                   <div class="beer-style">Hefeweizen</div>
                 </div>
-                <div class="beer-abv">5.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">5.0%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Golden Road - Belgian White</div>
                   <div class="beer-style">Witbier</div>
                 </div>
-                <div class="beer-abv">5.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">7.5%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Golden Road — Ride On</div>
                   <div class="beer-style">Hazy IPA</div>
                 </div>
-                <div class="beer-abv">7.5%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">4.8%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Golden Road Street Cart</div>
                   <div class="beer-style">Lime & Salt Cerveza</div>
                 </div>
-                <div class="beer-abv">4.8%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">4.0%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Golden Road Tart Mango Cart</div>
                   <div class="beer-style">Wheat Ale</div>
                 </div>
-                <div class="beer-abv">4.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">5.9%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Goose Island IPA</div>
                   <div class="beer-style">India Pale Ale</div>
                 </div>
-                <div class="beer-abv">5.9%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Goose Island - Neon Beer Hug</div>
-                  <div class="beer-style">Tropical IPA</div>
-                </div>
-                <div class="beer-abv">7.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Guinness (Nitro)</div>
+              <div class="beer-card">
+                <div class="beer-abv">4.2%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Guinness</div>
                   <div class="beer-style">Irish Stout</div>
                 </div>
-                <div class="beer-abv">4.2%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">HUDL — Vanilla Oak (Nitro)</div>
-                  <div class="beer-style">Cream Ale</div>
+              <div class="beer-card">
+                <div class="beer-abv">5.1%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Hofbräu München — Original</div>
+                  <div class="beer-style">Munich Helles Lager</div>
                 </div>
-                <div class="beer-abv">6.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">HUDL — Juxta Nomad Collaboration - Beer Park Blonde</div>
-                  <div class="beer-style">Blond Ale</div>
-                </div>
-                <div class="beer-abv">5.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Kona Brewing — Big Wave</div>
-                  <div class="beer-style">Golden Ale</div>
-                </div>
+              <div class="beer-card">
                 <div class="beer-abv">4.4%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Kona Brewing — Longboard</div>
-                  <div class="beer-style">American Lager</div>
-                </div>
-                <div class="beer-abv">4.6%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Kronenbourg Blanc</div>
-                  <div class="beer-style">Belgian Style Witbier</div>
-                </div>
-                <div class="beer-abv">5.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Lovelady — Love Juice</div>
-                  <div class="beer-style">Hazy IPA - Locally Brewed</div>
-                </div>
-                <div class="beer-abv">5.5%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Lovelady — 9th Island Pineapple Sour</div>
-                  <div class="beer-style">Golden Kettle Sour with Pineapple - Locally Brewed</div>
-                </div>
-                <div class="beer-abv">5.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Maui Brewing- Pineapple Mana</div>
-                  <div class="beer-style">Pineapple Wheat Ale</div>
-                </div>
-                <div class="beer-abv">5.5%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Michelob Ultra</div>
-                  <div class="beer-style">American Lager</div>
-                </div>
-                <div class="beer-abv">4.2%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Revision Brewing - Blonde NV</div>
-                  <div class="beer-style">Blonde Ale</div>
-                </div>
-                <div class="beer-abv">5.5%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Shock Top-Belgian White</div>
-                  <div class="beer-style">Belgian Style Wheat Ale</div>
-                </div>
-                <div class="beer-abv">5.2%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Spaten Premium</div>
-                  <div class="beer-style">Helles Lager</div>
-                </div>
-                <div class="beer-abv">5.2%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Stella Artois</div>
-                  <div class="beer-style">International Pale Lager</div>
-                </div>
-                <div class="beer-abv">5.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Widmer Hefeweizen</div>
-                  <div class="beer-style">Hefeweizen</div>
-                </div>
-                <div class="beer-abv">4.9%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="beer-category">
-            <h4>BOTTLED/CANNED BEER</h4>
-            <p style="color: var(--accent-yellow); margin-bottom: 2rem; font-weight: 700;">Bottle/Bucket</p>
-            <div class="beer-list">
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">21st Amendment Brew Free! Or Die Blood Orange IPA</div>
-                  <div class="beer-style">Blood Orange IPA</div>
-                </div>
-                <div class="beer-abv">7.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">21st Amendment - Hell Or High Watermelon</div>
-                  <div class="beer-style">Watermelon Wheat Ale</div>
-                </div>
-                <div class="beer-abv">4.9%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Beck's</div>
-                  <div class="beer-style">International Pale Ale</div>
-                </div>
-                <div class="beer-abv">5.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Bell's - Two Hearted Ale</div>
-                  <div class="beer-style">American IPA</div>
-                </div>
-                <div class="beer-abv">7.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Blake's - American Apple</div>
-                  <div class="beer-style">Imperial Hard Cider</div>
-                </div>
-                <div class="beer-abv">8.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Boddington's 16oz</div>
-                  <div class="beer-style">English pale Ale</div>
-                </div>
-                <div class="beer-abv">4.7%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Bud Light</div>
-                  <div class="beer-style">American Lager</div>
-                </div>
-                <div class="beer-abv">4.2%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Bud Light - Lime</div>
-                  <div class="beer-style">American Lager</div>
-                </div>
-                <div class="beer-abv">4.2%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Bud Light - Platinum</div>
-                  <div class="beer-style">American Lager</div>
-                </div>
-                <div class="beer-abv">6.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Bud Light & Clamato Chelada 25oz</div>
-                  <div class="beer-style">Clamato Michelada</div>
-                </div>
-                <div class="beer-abv">4.2%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Bud Light Straw-Ber-Rita 25oz</div>
-                  <div class="beer-style">Fruit Malt Liquor</div>
-                </div>
-                <div class="beer-abv">8.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Bud Light Seltzer (All Flavors)</div>
-                  <div class="beer-style">Hard Seltzer</div>
-                </div>
-                <div class="beer-abv">5.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Budweiser</div>
-                  <div class="beer-style">American Lager</div>
-                </div>
-                <div class="beer-abv">5.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Corona</div>
-                  <div class="beer-style">Lager</div>
-                </div>
-                <div class="beer-abv">4.6%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Crafthaus Rebel Spirit UNLV</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Kona — Big Wave</div>
                   <div class="beer-style">Golden Ale</div>
                 </div>
-                <div class="beer-abv">5.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Deschutes Brewery Butte Porter</div>
-                  <div class="beer-style">Porter</div>
+              <div class="beer-card">
+                <div class="beer-abv">4.6%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Kona — Longboard</div>
+                  <div class="beer-style">Island Lager</div>
                 </div>
-                <div class="beer-abv">5.2%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Dogfish Head - 60 Minute</div>
+              <div class="beer-card">
+                <div class="beer-abv">6.2%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Lagunitas — IPA</div>
                   <div class="beer-style">American IPA</div>
                 </div>
-                <div class="beer-abv">6.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Duvel</div>
-                  <div class="beer-style">Belgian Strong Pale Ale</div>
+              <div class="beer-card">
+                <div class="beer-abv">7.5%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Lagunitas — Little Sumpin' Sumpin'</div>
+                  <div class="beer-style">Wheat Ale</div>
                 </div>
-                <div class="beer-abv">8.5%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Estrella Jalisco</div>
-                  <div class="beer-style">Pilsner</div>
-                </div>
-                <div class="beer-abv">4.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Founders KBS</div>
-                  <div class="beer-style">Imperial Stout</div>
-                </div>
-                <div class="beer-abv">12.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Founders - Rübaeus</div>
-                  <div class="beer-style">Fruit Beer</div>
-                </div>
-                <div class="beer-abv">5.7%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Four Peaks - Hop Knot</div>
-                  <div class="beer-style">American IPA</div>
-                </div>
-                <div class="beer-abv">6.7%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Four Peaks - Kilt Lifter</div>
-                  <div class="beer-style">Scottish Style Ale</div>
-                </div>
-                <div class="beer-abv">6.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">George Killian's - Irish Red</div>
-                  <div class="beer-style">Lager</div>
-                </div>
-                <div class="beer-abv">5.4%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Goose Island - Bourbon Country 16.9oz</div>
-                  <div class="beer-style">Imperial Stout Aged in Bourbon Barrels</div>
-                </div>
-                <div class="beer-abv">14.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Heineken</div>
-                  <div class="beer-style">Lager</div>
-                </div>
-                <div class="beer-abv">5.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Kirin Ichiban</div>
-                  <div class="beer-style">Japanese Lager</div>
-                </div>
-                <div class="beer-abv">5.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Las Vegas Brewing Co - Chantilly Cream Ale 19.2oz</div>
-                  <div class="beer-style">Vanilla Cream Ale</div>
-                </div>
-                <div class="beer-abv">5.3%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Lead Dog Brewing Peanut Butter Stout</div>
-                  <div class="beer-style">Peanut Butter Stout</div>
-                </div>
-                <div class="beer-abv">6.6%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Michelob Amber Bock</div>
-                  <div class="beer-style">American Lager</div>
-                </div>
-                <div class="beer-abv">4.1%</div>
-              </div>
-              <div class="beer-item">
-                <div>
+              <div class="beer-card">
+                <div class="beer-abv">4.2%</div>
+                <div class="beer-card-header">
                   <div class="beer-name">Michelob Ultra</div>
+                  <div class="beer-style">Light Lager</div>
+                </div>
+              </div>
+              <div class="beer-card">
+                <div class="beer-abv">4.2%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Miller Lite</div>
+                  <div class="beer-style">Light Lager</div>
+                </div>
+              </div>
+              <div class="beer-card">
+                <div class="beer-abv">5.2%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">New Belgium — Fat Tire</div>
+                  <div class="beer-style">Amber Ale</div>
+                </div>
+              </div>
+              <div class="beer-card">
+                <div class="beer-abv">7.0%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">New Belgium — Voodoo Ranger</div>
+                  <div class="beer-style">American IPA</div>
+                </div>
+              </div>
+              <div class="beer-card">
+                <div class="beer-abv">4.7%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Pabst Blue Ribbon</div>
                   <div class="beer-style">American Lager</div>
                 </div>
-                <div class="beer-abv">4.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Michelob Ultra - Pure Gold</div>
-                  <div class="beer-style">Organic American Lager</div>
+              <div class="beer-card">
+                <div class="beer-abv">5.0%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Samuel Adams — Boston Lager</div>
+                  <div class="beer-style">Vienna Lager</div>
                 </div>
-                <div class="beer-abv">4.3%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Neon Desert Brewing - Beer Park Hefe 16oz</div>
-                  <div class="beer-style">Hefeweizen</div>
-                </div>
+              <div class="beer-card">
                 <div class="beer-abv">5.3%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Redbridge</div>
-                  <div class="beer-style">Gluten Free Lager</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Samuel Adams — Summer Ale</div>
+                  <div class="beer-style">Wheat Ale</div>
                 </div>
-                <div class="beer-abv">4.8%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Revision Disco Ninja-16oz</div>
-                  <div class="beer-style">Hazy IPA</div>
+              <div class="beer-card">
+                <div class="beer-abv">5.6%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Sierra Nevada — Pale Ale</div>
+                  <div class="beer-style">American Pale Ale</div>
                 </div>
-                <div class="beer-abv">7.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Sam Adams</div>
-                  <div class="beer-style">Boston Lager</div>
+              <div class="beer-card">
+                <div class="beer-abv">5.0%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Stella Artois</div>
+                  <div class="beer-style">European Lager</div>
                 </div>
-                <div class="beer-abv">4.9%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Schönramer Gold 500ml</div>
-                  <div class="beer-style">Märzen</div>
+              <div class="beer-card">
+                <div class="beer-abv">7.2%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Stone — Arrogant Bastard</div>
+                  <div class="beer-style">American Strong Ale</div>
                 </div>
-                <div class="beer-abv">6.0%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Skimmers - Half & Half</div>
-                  <div class="beer-style">Vodka Ice Tea & Lemonade</div>
+              <div class="beer-card">
+                <div class="beer-abv">7.7%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Stone — Delicious IPA</div>
+                  <div class="beer-style">American IPA</div>
                 </div>
-                <div class="beer-abv">4.5%</div>
               </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Squatters Hop Rising</div>
-                  <div class="beer-style">Double IPA</div>
+              <div class="beer-card">
+                <div class="beer-abv">4.4%</div>
+                <div class="beer-card-header">
+                  <div class="beer-name">Yuengling — Traditional Lager</div>
+                  <div class="beer-style">American Amber Lager</div>
                 </div>
-                <div class="beer-abv">9.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Victory - Golden Monkey</div>
-                  <div class="beer-style">Belgian Style Tripel</div>
-                </div>
-                <div class="beer-abv">9.5%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="beer-category">
-            <h4>NON-ALCOHOLIC BEER</h4>
-            <div class="beer-list">
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Athletic Brewing - Upside Dawn</div>
-                  <div class="beer-style">N/A Golden Ale</div>
-                </div>
-                <div class="beer-abv">0.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Brooklyn Brewery - Grapefruit IPA</div>
-                  <div class="beer-style">N/A Grapefruit IPA</div>
-                </div>
-                <div class="beer-abv">0.0%</div>
-              </div>
-              <div class="beer-item">
-                <div>
-                  <div class="beer-name">Michelob - Ultra Zero</div>
-                  <div class="beer-style">N/A Lager</div>
-                </div>
-                <div class="beer-abv">0.0%</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- COCKTAILS MENU -->
+        <!-- COCKTAILS -->
         <div id="cocktails" class="menu-content">
-          <div class="menu-category">
-            <h3>SPECIALTY CRAFT COCKTAILS</h3>
-            <p style="color: var(--accent-yellow); margin-bottom: 2rem; font-weight: 700;">glass/64oz pitcher</p>
-            <div class="menu-items">
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Grand Slam Peacharita</h4>
-                  <p class="cocktail-description">A perfect blend of tequila and peach for the ultimate game day drink</p>
-                  <p class="cocktail-ingredients">Don Julio Blanco Tequila, Peach Nectar, Citrus Spritzer</p>
-                </div>
-                <div class="cocktail-price">$14</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">The Park Iced Tea</h4>
-                  <p class="cocktail-description">Our signature long island with a Beer Park twist</p>
-                  <p class="cocktail-ingredients">Five White Spirits, Fresh Sweet & Sour, Splash of Cola</p>
-                </div>
-                <div class="cocktail-price">$13</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Touchdown Smash</h4>
-                  <p class="cocktail-description">Celebrate every touchdown with this refreshing watermelon cocktail</p>
-                  <p class="cocktail-ingredients">Skyy Watermelon, Lemon Juice, Watermelon Juice</p>
-                </div>
-                <div class="cocktail-price">$12</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Sunday Red Eye</h4>
-                  <p class="cocktail-description">The perfect brunch cocktail for Sunday football</p>
-                  <p class="cocktail-ingredients">Ketel One Vodka, Bloody Mary Mix</p>
-                </div>
-                <div class="cocktail-price">$11</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">The Final Four</h4>
-                  <p class="cocktail-description">A bourbon cocktail that's smooth as a championship run</p>
-                  <p class="cocktail-ingredients">Elijah Craig Bourbon, Owens Ginger Beer, Lemon</p>
-                </div>
-                <div class="cocktail-price">$15</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">At the Buzzer</h4>
-                  <p class="cocktail-description">Sweet and tangy cocktail that hits just right</p>
-                  <p class="cocktail-ingredients">Bacardi Silver Rum, Strawberries, Sweet & Sour</p>
-                </div>
-                <div class="cocktail-price">$12</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">3 Pointer</h4>
-                  <p class="cocktail-description">A perfect shot of tequila and grapefruit</p>
-                  <p class="cocktail-ingredients">Don Julio Blanco Tequila, Deep Eddy Ruby Red Vodka, Grapefruit Soda</p>
-                </div>
-                <div class="cocktail-price">$13</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Hail Mary</h4>
-                  <p class="cocktail-description">A long shot that always pays off</p>
-                  <p class="cocktail-ingredients">Deep Eddy Peach Vodka, Aperol, Fresh Lemon Juice, Tropical Red Bull Energy Drink</p>
-                </div>
-                <div class="cocktail-price">$14</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">In The Zone</h4>
-                  <p class="cocktail-description">Cool and refreshing like a perfect game</p>
-                  <p class="cocktail-ingredients">Ketel One Botanicals Cucumber Mint, Owens Cucumber Mint Soda, Lime</p>
-                </div>
-                <div class="cocktail-price">$13</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Yellow Card</h4>
-                  <p class="cocktail-description">Tropical paradise in a glass</p>
-                  <p class="cocktail-ingredients">Cruzan Light Rum, Malibu Coconut Rum, Prime Hydration Lemonade, Pineapple Juice</p>
-                </div>
-                <div class="cocktail-price">$12</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Lost in Paradise</h4>
-                  <p class="cocktail-description">Exotic flavors that transport you to paradise</p>
-                  <p class="cocktail-ingredients">Uncle Ed's Jackfruit Vodka, Chinola Passionfruit, Coconut Water, Lime, Tiki Bitters</p>
-                </div>
-                <div class="cocktail-price">$15</div>
-              </div>
-            </div>
+          <div class="featured-section">
+            <h2 class="featured-title">CRAFTED COCKTAILS</h2>
+            <p class="featured-subtitle">Signature Mixes & Classic Favorites</p>
           </div>
 
           <div class="menu-category">
-            <h3>BEER COCKTAILS</h3>
-            <div class="menu-items">
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Ball Park Michelada</h4>
-                  <p class="cocktail-description">The ultimate beer cocktail for game day</p>
-                  <p class="cocktail-ingredients">Estrella Jalisco, Michelada Mix, Lime, Chili Salt Rim</p>
-                </div>
-                <div class="cocktail-price">$9</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Pick Six</h4>
-                  <p class="cocktail-description">A winning combination of beer and tropical flavors</p>
-                  <p class="cocktail-ingredients">Bud Light, Bacardi Tropical Rum, Ruby Red Grapefruit, Lime</p>
-                </div>
-                <div class="cocktail-price">$10</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Superbowl Shandy</h4>
-                  <p class="cocktail-description">The perfect drink for the big game</p>
-                  <p class="cocktail-ingredients">Golden Road Belgium White, Sky Blood Orange Vodka, Aperol, Lemon</p>
-                </div>
-                <div class="cocktail-price">$11</div>
-              </div>
-              <div class="cocktail-item">
-                <div class="cocktail-info">
-                  <h4 class="cocktail-name">Tea Time</h4>
-                  <p class="cocktail-description">A refreshing beer cocktail with a southern twist</p>
-                  <p class="cocktail-ingredients">Golden Road Mango Cart Wheat Ale, Deep Eddy Sweet Tea Vodka, Lemon</p>
-                </div>
-                <div class="cocktail-price">$10</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BEVERAGES MENU -->
-        <div id="beverages" class="menu-content">
-          <div class="menu-category">
-            <h3>HYDRATION/ENERGY</h3>
-            <p style="color: var(--accent-yellow); margin-bottom: 2rem; font-weight: 700;">bottle/bucket</p>
+            <h3>Signature Cocktails</h3>
             <div class="menu-items">
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Coco Love Coconut Water</h4>
-                  <p>11oz</p>
-                </div>
-                <div class="menu-item-price">$4</div>
-              </div>
-              <div class="menu-item">
-                <div class="menu-item-info">
-                  <h4>Prime Hydration Lemonade</h4>
-                  <p>16.9oz</p>
-                </div>
-                <div class="menu-item-price">$5</div>
-              </div>
-              <div class="menu-item">
-                <div class="menu-item-info">
-                  <h4>Red Bull</h4>
-                  <p>8.4oz</p>
-                </div>
-                <div class="menu-item-price">$4</div>
-              </div>
-              <div class="menu-item">
-                <div class="menu-item-info">
-                  <h4>Red Bull Sugar Free</h4>
-                  <p>8.4oz</p>
-                </div>
-                <div class="menu-item-price">$4</div>
-              </div>
-              <div class="menu-item">
-                <div class="menu-item-info">
-                  <h4>Red Bull Tropical</h4>
-                  <p>8.4oz</p>
-                </div>
-                <div class="menu-item-price">$4</div>
-              </div>
-              <div class="menu-item">
-                <div class="menu-item-info">
-                  <h4>Beer Park Bottled Water</h4>
-                  <p>16.9oz</p>
-                </div>
-                <div class="menu-item-price">$3</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-category">
-            <h3>WINES ON DRAFT</h3>
-            <p style="color: var(--accent-yellow); margin-bottom: 2rem; font-weight: 700;">Glass/Carafe</p>
-            <div class="menu-items">
-              <div class="menu-item">
-                <div class="menu-item-info">
-                  <h4>Cabernet Sauvignon - Quilt</h4>
-                  <p>Napa Valley, California, USA</p>
+                  <h4>Beer Park Mule</h4>
+                  <p>Vodka, ginger beer, lime, mint</p>
                 </div>
                 <div class="menu-item-price">$12</div>
               </div>
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Chardonnay - Imagery</h4>
-                  <p>Sonoma, California, USA</p>
-                </div>
-                <div class="menu-item-price">$10</div>
-              </div>
-              <div class="menu-item">
-                <div class="menu-item-info">
-                  <h4>Pinot Noir</h4>
-                  <p>Rickshaw, California, USA</p>
+                  <h4>Strip Sunset</h4>
+                  <p>Tequila, orange juice, grenadine, lime</p>
                 </div>
                 <div class="menu-item-price">$11</div>
               </div>
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Red Blend</h4>
-                  <p>Castello di Querceto Toscana Rosso, Tuscany, Italy</p>
+                  <h4>Vegas Old Fashioned</h4>
+                  <p>Bourbon, simple syrup, angostura bitters, orange peel</p>
                 </div>
-                <div class="menu-item-price">$10</div>
+                <div class="menu-item-price">$13</div>
               </div>
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Rosé</h4>
-                  <p>Stemmari, Ragusa, Sicilia, Italy</p>
+                  <h4>Bellagio Breeze</h4>
+                  <p>Rum, blue curacao, pineapple juice, coconut cream</p>
                 </div>
-                <div class="menu-item-price">$9</div>
+                <div class="menu-item-price">$12</div>
               </div>
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Sauvignon Blanc</h4>
-                  <p>Starborough, Marlborough, New Zealand</p>
+                  <h4>Rooftop Margarita</h4>
+                  <p>Tequila, triple sec, lime juice, agave, salt rim</p>
                 </div>
-                <div class="menu-item-price">$10</div>
+                <div class="menu-item-price">$11</div>
               </div>
             </div>
           </div>
 
           <div class="menu-category">
-            <h3>SPARKLING WINE</h3>
+            <h3>Classic Cocktails</h3>
             <div class="menu-items">
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Beau Joie, Special Cuvée, Brut, Champagne</h4>
-                  <p>Premium French Champagne</p>
+                  <h4>Manhattan</h4>
+                  <p>Bourbon, sweet vermouth, angostura bitters</p>
                 </div>
-                <div class="menu-item-price">$18</div>
+                <div class="menu-item-price">$12</div>
               </div>
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Beau Joie, Squire, Brut, Champagne</h4>
-                  <p>French Champagne</p>
+                  <h4>Mojito</h4>
+                  <p>White rum, mint, lime, simple syrup, soda water</p>
                 </div>
-                <div class="menu-item-price">$16</div>
+                <div class="menu-item-price">$11</div>
               </div>
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Dom Perignon Champagne</h4>
-                  <p>Luxury French Champagne</p>
+                  <h4>Cosmopolitan</h4>
+                  <p>Vodka, triple sec, cranberry juice, lime</p>
                 </div>
-                <div class="menu-item-price">$45</div>
+                <div class="menu-item-price">$12</div>
               </div>
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>JP Chenet Blanc de Blancs, Brut Sparkling</h4>
-                  <p>French Sparkling Wine</p>
+                  <h4>Whiskey Sour</h4>
+                  <p>Bourbon, lemon juice, simple syrup, egg white</p>
                 </div>
-                <div class="menu-item-price">$8</div>
+                <div class="menu-item-price">$11</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BEVERAGES -->
+        <div id="beverages" class="menu-content">
+          <div class="featured-section">
+            <h2 class="featured-title">BEVERAGES</h2>
+            <p class="featured-subtitle">Non-Alcoholic Options</p>
+          </div>
+
+          <div class="menu-category">
+            <h3>Non-Alcoholic</h3>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="menu-item-info">
+                  <h4>Soft Drinks</h4>
+                  <p>Coke, Diet Coke, Sprite, Orange, Root Beer</p>
+                </div>
+                <div class="menu-item-price">$3</div>
               </div>
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Montinore "Vivacé" D.O.C., Brut Rosé, Prosecco</h4>
-                  <p>Veneto, Italy</p>
+                  <h4>Fresh Juices</h4>
+                  <p>Orange, Apple, Cranberry, Grapefruit</p>
                 </div>
-                <div class="menu-item-price">$9</div>
+                <div class="menu-item-price">$4</div>
               </div>
               <div class="menu-item">
                 <div class="menu-item-info">
-                  <h4>Veuve Clicquot Champagne</h4>
-                  <p>Premium French Champagne</p>
+                  <h4>Coffee & Tea</h4>
+                  <p>Fresh brewed coffee, hot tea, iced tea</p>
                 </div>
-                <div class="menu-item-price">$25</div>
+                <div class="menu-item-price">$3-4</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-   
+
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="socials">
         <a href="#" aria-label="Facebook">
@@ -1835,36 +1740,25 @@ body.sidebar-open .hamburger-btn .bar:nth-child(3) {
       </div>
       <p>© 2025 Beer Park Las Vegas. All Rights Reserved.</p>
     </footer>
-
   </main>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-
-  // --- MOBILE MENU LOGIC ---
+  // Mobile menu
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const closeMenuBtn = document.getElementById('close-menu-btn');
   const sidebar = document.getElementById('sidebar');
- 
+  
   if (hamburgerBtn && closeMenuBtn) {
-    hamburgerBtn.addEventListener('click', () => { 
-      document.body.classList.add('sidebar-open'); 
+    hamburgerBtn.addEventListener('click', () => {
+      document.body.classList.add('sidebar-open');
     });
-    closeMenuBtn.addEventListener('click', () => { 
-      document.body.classList.remove('sidebar-open'); 
+    
+    closeMenuBtn.addEventListener('click', () => {
+      document.body.classList.remove('sidebar-open');
     });
-   
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (document.body.classList.contains('sidebar-open')) {
-        if (!sidebar.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-          document.body.classList.remove('sidebar-open');
-        }
-      }
-    });
-   
-    // Close menu when clicking a link
+    
     const sidebarLinks = sidebar.querySelectorAll('a');
     sidebarLinks.forEach(link => {
       link.addEventListener('click', () => {
@@ -1873,21 +1767,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- MENU NAVIGATION LOGIC ---
-  const menuNavTabs = document.querySelectorAll('.menu-nav-tab');
+  // Menu tab switching
+  const menuTabs = document.querySelectorAll('.menu-nav-tab');
   const menuContents = document.querySelectorAll('.menu-content');
-  
-  menuNavTabs.forEach(tab => {
+
+  menuTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      const target = document.getElementById(tab.dataset.tab);
+      // Remove active class from all tabs and contents
+      menuTabs.forEach(t => t.classList.remove('active'));
+      menuContents.forEach(c => c.classList.remove('active'));
       
-      // Update active class on tabs
-      menuNavTabs.forEach(t => t.classList.remove('active'));
+      // Add active class to clicked tab
       tab.classList.add('active');
       
-      // Update active class on content
-      menuContents.forEach(content => content.classList.remove('active'));
-      if(target) target.classList.add('active');
+      // Show corresponding content
+      const targetTab = tab.getAttribute('data-tab');
+      const targetContent = document.getElementById(targetTab);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
     });
   });
 });
